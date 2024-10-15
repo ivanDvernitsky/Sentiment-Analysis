@@ -1,41 +1,10 @@
-# Plot a radar chart with the negative reasons for three carriers
-# Generate a dataframe with negative reasons rates per carrier for 3 carriers
-neg_rev = pd.DataFrame(index=df['negativereason'].dropna().unique())
-for air in ['Delta', 'Virgin America']:
-    neg_rev[air] = df[df['airline'] == air]['negativereason'].value_counts(normalize=True)*100
+Customer Sentiment Analysis
+Sentiment generally refers to feelings, attitudes, emotions, and opinions. Sentiment analysis, therefore, is the application of natural language processing (NLP) and text analytics techniques to identify and extract subjective information from a piece of text. In the digital realm, it is the automated process of uncovering emotions regarding how customers feel about a product, brand, or service—whether it belongs to your company or a competitor—on social media platforms. In terms of marketing management, sentiment analysis can be extremely beneficial for established companies to gain insights and respond effectively to their consumers, as well as for startups to understand the dynamics of their market and better position themselves among competitors.
 
-# number of variable
-categories = list(neg_rev.index)
-N = len(categories)
+The most common use of sentiment analysis is to classify text into different categories. This typically involves one of the following statistical models:
 
-# What will be the angle of each axis in the plot? (we divide the plot / number of variable)
-angles = [n / float(N) * 2 * np.pi for n in range(N)]
-angles += angles[:1]
-
-# We are going to plot the first column of the data frame.
-# But we need to repeat the first value to close the circular graph:
-values = neg_rev.values
-values = np.append(values, [values[0,:]], axis=0)
-labels = neg_rev.columns.values
-# Initialise the spider plot
-ax = plt.subplot(111, polar=True)
-# Draw one axe per variable + add labels
-plt.xticks(angles[:-1], categories, color='grey', size=10)
-# Draw ylabels
-ax.set_rlabel_position(0)
-plt.yticks([5,10,15,20,25], ["5","10","15",'20','25'], color="grey", size=10)
-plt.ylim(0,40)
-# Plot data
-for y_arr, label in zip(values.T, labels):
-    ax.plot(angles, y_arr, linewidth=1.5, linestyle='solid', label=label)
-# Fill area
-ax.fill(angles, values, ['b', 'o', 'green'], alpha=0.3)
-plt.legend(loc='upper right', bbox_to_anchor=(0.1, 0.1),)
-
-plt.title('Features of the Best Airline vs the Next Best', fontsize=18,);
-# Show the graph
-plt.show()
-
-
-
-
+Naive Bayes
+Linear Regression
+Support Vector Machines (SVM)
+Deep Learning
+In this notebook collection, we will explore the significance of such analysis and the methods used to conduct it.
